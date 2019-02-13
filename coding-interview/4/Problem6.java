@@ -12,7 +12,7 @@ Node findInorderSuccessor(Node node) {
 	if (node.right != null) { // inorder에 따라서 오른쪽 차일드의 가장 왼쪽 원소 리턴
 		return getLeftMost(node.right);
 	} else if (node.parent != null) { // inorder에 따라서 방문하지 않은 가장 가까운 가운데 원소 리턴
-		return getMostCloseNotVisitedParent(node);
+		return getClosestNotVisitedParent(node);
 	} else { //root node
 		return null;
 	}
@@ -27,7 +27,7 @@ Node getLeftMost(Node node) {
 	return leftMost;
 }
 
-Node getMostCloseNotVisitedParent(Node node) {
+Node getClosestNotVisitedParent(Node node) {
 	Node current = node;
 	Node parent = node.parent;
 	while(parent != null && parent.right == current) {
