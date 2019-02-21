@@ -4,7 +4,6 @@ static class Node {
 	int value;
 }
 
-//
 int countPath(Node node, int target) {
 	if (node == null) {
 		return 0;
