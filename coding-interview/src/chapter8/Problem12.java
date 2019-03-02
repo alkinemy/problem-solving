@@ -47,7 +47,7 @@ void markPathOfQueen(int row, int column, int[][] board, int delta) {
 void printQueenPosition(int[][] board) {
 	for (int row = 0; row < board.length; row++) {
 		for (int column = 0; row < board[0].length; column++) {
-			char mark = board[row][column] == 0 ? 'O' : 'X'
+			char mark = board[row][column] == 0 ? 'O' : 'X';
 			System.out.print(mark + " ");
 		}
 		System.out.println();
