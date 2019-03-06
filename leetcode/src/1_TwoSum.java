@@ -2,6 +2,7 @@
  * https://leetcode.com/problems/two-sum/
  */
 
+//first accepted answer
 class Solution {
 	public int[] twoSum(int[] nums, int target) {
 		for (int i = 0; i < nums.length; i++) {
@@ -15,6 +16,7 @@ class Solution {
 	}
 }
 
+//second accepted answer
 class Solution {
 	public int[] twoSum(int[] nums, int target) {
 		Map<Integer, Integer> map = new HashMap<>();
@@ -32,6 +34,7 @@ class Solution {
 	}
 }
 
+//third accepted answer
 class Solution {
 	public int[] twoSum(int[] nums, int target) {
 		Map<Integer, Integer> map = new HashMap<>();
