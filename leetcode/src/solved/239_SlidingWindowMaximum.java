@@ -34,3 +34,38 @@ class Solution {
 		}
 	}
 }
+
+//second answer
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        if (k == 0 || nums == null || nums.length == 0) {
+            return new int[0];
+        }
+
+        int maxIndex = -1;
+        int maxValue = Integer.MIN_VALUE;
+        int[] result = new int[nums.length - k + 1];
+        for (int i = 0; i < nums.length - k + 1; i++) {
+            if (maxIndex < i) {
+                maxIndex = i;
+                maxValue = nums[i];
+                for(int j = i + 1; j < i + k; j++) {
+                    int current = nums[j];
+                    if (current >= maxValue) {
+                        maxIndex = j;
+                        maxValue = current;
+                    }
+                }
+                result[i] = maxValue;
+            } else {
+                int current = nums[i + k - 1];
+                if (current >= maxValue) {
+                    maxIndex = i;
+                    maxValue = current;
+                }
+                result[i] = maxValue;
+            }
+        }
+        return result;
+    }
+}
