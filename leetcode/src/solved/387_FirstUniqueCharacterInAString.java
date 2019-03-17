@@ -84,3 +84,32 @@ class Solution {
         }
     }
 }
+
+
+//use linked hash map(cheated)
+class Solution {
+    public int firstUniqChar(String s) {
+        if (s == null || s.length() == 0) {
+            return -1;
+        }
+
+        Map<Character, Integer> uniqueIndices = new LinkedHashMap<>();
+        Set<Character> seen = new HashSet<>();
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (seen.contains(c)) {
+                if (uniqueIndices.containsKey(c)) {
+                    uniqueIndices.remove(c);
+                }
+            } else {
+                uniqueIndices.put(c, i);
+                seen.add(c);
+            }
+        }
+
+        if (uniqueIndices.isEmpty()) {
+            return -1;
+        }
+        return uniqueIndices.entrySet().iterator().next().getValue();
+    }
+}
