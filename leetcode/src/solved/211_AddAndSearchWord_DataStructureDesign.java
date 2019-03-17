@@ -81,6 +81,8 @@ class WordDictionary {
 
 
 
+//dfs - bfs보다 좀 더 빠르다
+//O(min(사전의 크기, 26^k)), k는 word length
 class WordDictionary {
 
 	WordDictionary[] dicts = new WordDictionary[26];
@@ -107,7 +109,6 @@ class WordDictionary {
 		current.endOfWord = true;
 	}
 
-	//dfs - bfs보다 좀 더 빠르다
 	public boolean search(String word) {
 		if (word == null) {
 			return false;
