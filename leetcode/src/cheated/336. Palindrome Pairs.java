@@ -7,7 +7,6 @@ class Solution {
 	class TrieNode {
 		TrieNode[] children = new TrieNode[26];
 
-		boolean isEndOfWord = false;
 		int endWordIndex = -1;
 		List<Integer> palindromeIndices = new ArrayList<>();
 
@@ -23,22 +22,23 @@ class Solution {
 				}
 				node = node.children[index];
 			}
-			node.isEndOfWord = true;
 			node.endWordIndex = wordIndex;
+			node.palindromeIndices.add(wordIndex);
 		}
 
 		List<Integer> searchPalindrome(String word) {
 			TrieNode node = this;
 			List<Integer> found = new ArrayList<>();
 			for (int i = 0; i < word.length(); i++) {
+				if (node.endWordIndex != -1 && isPalindrome(word, i, word.length() - 1)) {
+					found.add(node.endWordIndex);
+				}
+
 				int index = word.charAt(i) - 'a';
 				if (node.children[index] == null) {
 					return found;
 				}
 				node = node.children[index];
-				if (node.isEndOfWord && isPalindrome(word, i + 1, word().length - 1)) {
-					found.add(node.endWordIndex);
-				}
 			}
 			found.addAll(node.palindromeIndices);
 			return found;
@@ -73,16 +73,7 @@ class Solution {
 				if (index == i) {
 					continue;
 				}
-				List<Integer> pair = new ArrayList<>();
-				pair.add(i);
-				pair.add(index);
-				result.add(pair);
-				if ("".equals(words[i])) {
-					List<Integer> pair2 = new ArrayList<>();
-					pair2.add(index);
-					pair2.add(i);
-					result.add(pair2);
-				}
+				result.add(Arrays.asList(i, index));
 			}
 		}
 		return result;
