@@ -31,7 +31,7 @@ class Solution {
 }
 
 
-//second answer(don't use lambda)
+//second answer(don't use the lambda)
 class Solution {
     public boolean canAttendMeetings(Interval[] intervals) {
 		if (intervals == null || intervals.length == 0) {
