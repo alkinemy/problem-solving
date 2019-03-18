@@ -2,6 +2,7 @@
  * https://leetcode.com/problems/spiral-matrix/
  */
 
+//first answer
 class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
@@ -45,4 +46,92 @@ class Solution {
         return result;
     }   
 }
+
+
+
+
+
+//simulation(solution)
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+		if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+			return Collections.emptyList();
+		}
+		int rows = matrix.length;
+		int columns = matrix[0].length;
+
+		boolean[][] seen = new boolean[rows][columns];
+		List<Integer> result = new ArrayList<>();
+		//right down left up
+		int[] rowDirection =    {0, 1,  0, -1};
+		int[] columnDirection = {1, 0, -1,  0};
+		int r = 0;
+		int c = 0;
+		int direction = 0;
+		for(int i = 0; i < rows * columns; i++) {
+			result.add(matrix[r][c]);
+			seen[r][c] = true;
+			int nextR = r + rowDirection[direction];
+			int nextC = c + columnDirection[direction];
+			if (nextR >= 0 && nextR < rows && nextC >= 0 && nextC < columns && !seen[nextR][nextC]) {
+				r = nextR;
+				c = nextC;
+			} else {
+				direction = (direction + 1) % 4;
+				r += rowDirection[direction];
+				c += columnDirection[direction];
+			}
+		}
+		return result;
+	}
+}
+
+
+
+//layer by layer(solution)
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+		if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+			return Collections.emptyList();
+		}
+		
+		int r1 = 0;
+		int c1 = 0;
+		int r2 = matrix.length - 1;
+		int c2 = matrix[0].length - 1;
+		List<Integer> result = new ArrayList<>();
+		while(r1 <= r2 && c1 <= c2) {
+			for (int c = c1; c <= c2; c++) {
+				result.add(matrix[r1][c]);
+			}
+			for (int r = r1 + 1; r <= r2; r++) {
+				result.add(matrix[r][c2]);
+			}
+			if (r1 < r2 && c1 < c2) {
+				for (int c = c2 - 1; c >= c1; c--) {
+					result.add(matrix[r2][c]);
+				}
+				for (int r = r2 - 1; r > r1; r--) {
+					result.add(matrix[r][c1]);
+				}
+			}
+			r1++;
+			c1++;
+			r2--;
+			c2--;
+		}
+		return result;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
 
