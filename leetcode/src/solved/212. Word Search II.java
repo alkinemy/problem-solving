@@ -1,7 +1,6 @@
 /**
  * https://leetcode.com/problems/word-search-ii/
  */
-
 class Solution {
 
 	class TrieNode {
@@ -21,6 +20,39 @@ class Solution {
 			current.isEndOfWord = true;
 			current.index = index;
 		}
+
+		public void remove(String word) {
+			remove(word, 0);
+		}
+
+		private boolean remove(String word, int depth) {
+			if (word.length() == depth) {
+				if (this.isEndOfWord) {
+					this.isEndOfWord = false;
+				}
+				return isEmpty();
+			}
+
+			int cIndex = word.charAt(depth) - 'a';
+			TrieNode child = this.children[cIndex];
+			if (child == null) {
+				return false;
+			}
+			boolean shouldRemoveNode = child.remove(word, depth + 1);
+			if (shouldRemoveNode) {
+				this.children[cIndex] = null;
+			}
+			return isEmpty();
+		}
+
+		public boolean isEmpty() {
+			for (TrieNode child : children) {
+				if (child != null) {
+					return false;
+				}
+			}
+			return true;
+		}
 	}
 
 	public List<String> findWords(char[][] board, String[] words) {
@@ -35,7 +67,7 @@ class Solution {
 				TrieNode next = root.children[board[r][c] - 'a'];
 				if (next != null) {
 					boolean[][] visited = new boolean[board.length][board[0].length];
-					result.addAll(search(board, r, c, root, words));
+					search(board, r, c, root, root, visited, words, result);
 				}
 			}
 		}
@@ -50,31 +82,28 @@ class Solution {
 		return root;
 	}
 
-	List<String> search(char[][] board, int r, int c, TrieNode node, boolean[][] visited, String[] words) {
-		if (r < 0 || r >= board.length || c < 0 || c >= board[0].length) {
-			return Collections.emptyList();
+	void search(char[][] board, int r, int c, TrieNode root, TrieNode node, boolean[][] visited, String[] words, List<String> result) {
+		if (node == null) {
+			return;
 		}
-
-		if (visited[r][c]) {
-			return Collections.emptyList();
-		}
-
-		visited[r][c] = true;
-		List<String> result = new ArrayList<>();
 		if (node.isEndOfWord) {
-			result.add(words[node.index]);
-		} 
-
-		TrieNode next = node.children[board[r][c] - 'a'];
-		if (next != null) {
-			int[] rows =    { 0, 0, -1, 1};
-			int[] columns = {-1, 1,  0, 0};
-			for (int i = 0; i < 4; i++) {
-				result.addAll(search(board, r + rows[i], c + columns[i], next, visited, words));
-			}
-
+			String word = words[node.index];
+			result.add(word);
+			root.remove(word);
 		}
-		return result;
+		if (r < 0 || r >= board.length || c < 0 || c >= board[0].length || visited[r][c]) {
+			return;
+		}
+
+		int index = board[r][c] - 'a';
+		if (node.children[index] != null) {
+			visited[r][c] = true;
+		}
+		int[] rows =    { 0, 0, -1, 1};
+		int[] columns = {-1, 1,  0, 0};
+		for (int i = 0; i < 4; i++) {
+			search(board, r + rows[i], c + columns[i], root, node.children[index], visited, words, result);
+		}
 	}
 
 }
