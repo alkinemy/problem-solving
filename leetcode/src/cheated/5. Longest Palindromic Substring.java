@@ -2,7 +2,7 @@
  * https://leetcode.com/problems/longest-palindromic-substring/
  */
 
-//first answer(DP, slow)
+//DP (solution)
 class Solution {
 	public String longestPalindrome(String s) {
 		if (s == null || "".equals(s)) {
