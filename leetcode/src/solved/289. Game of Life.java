@@ -43,3 +43,67 @@ class Solution {
 	}
 }
 
+
+
+//second answer(in-place) space: O(M)
+class Solution {
+    public void gameOfLife(int[][] board) {
+		if (board == null || board.length == 0 || board[0].length == 0) {
+			return;
+		}
+
+		int[] currentLineCorrection = new int[board[0].length];
+		int[] nextLineCorrection = null;
+		for (int i = 0; i < board.length; i++) {
+			nextLineCorrection = new int[board[0].length];
+			for (int j = 0; j < board[i].length; j++) {
+				int current = board[i][j];
+				int count = countLiveCells(board, i, j, currentLineCorrection);
+				if (current == 1) {
+					if (count != 2 && count != 3) {
+						board[i][j] = 0;
+						if (j + 1 < board[i].length) {
+							currentLineCorrection[j + 1]++;
+							nextLineCorrection[j + 1]++;
+						}
+						nextLineCorrection[j]++;
+						if (j - 1 >= 0) {
+							nextLineCorrection[j - 1]++;
+						}
+					}
+				} else {
+					if (count == 3) {
+						board[i][j] = 1;
+						if (j + 1 < board[i].length) {
+							currentLineCorrection[j + 1]--;
+							nextLineCorrection[j + 1]--;
+						}
+						nextLineCorrection[j]--;
+						if (j - 1 >= 0) {
+							nextLineCorrection[j - 1]--;
+						}
+					}
+				}
+			}
+			currentLineCorrection = nextLineCorrection;
+		}
+    }
+
+	int countLiveCells(int[][] board, int r, int c, int[] correction) {
+		//좌상/상/우상/우/우하/하/좌하/좌
+		int[] rows =    {-1, -1, -1, 0, 1, 1,  1,  0};
+		int[] columns = {-1,  0,  1, 1, 1, 0, -1, -1};
+
+		int count = 0;
+		for (int i = 0; i < 8; i++) {
+			int row = r + rows[i];
+			int column = c + columns[i];
+			if (row >= 0 && row < board.length && column >= 0 && column < board[0].length) {
+				count += board[row][column];
+			}
+		}
+		count += correction[c];
+		return count;
+	}
+}
+
