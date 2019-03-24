@@ -43,3 +43,66 @@ class BSTIterator {
  * int param_1 = obj.next();
  * boolean param_2 = obj.hasNext();
  */
+
+//solution(stack)
+class BSTIterator {
+
+	private Stack<TreeNode> nodes = new Stack<>();
+
+	public BSTIterator(TreeNode root) {
+		TreeNode current = root;
+		while(current != null) {
+			nodes.push(current);
+			current = current.left;
+		}
+	}
+
+	public int next() {
+		TreeNode node = nodes.pop();
+		TreeNode current = node.right;
+		while(current != null) {
+			stack.push(current);
+			current = current.left;
+		}
+		return node.val;
+	}
+
+	public boolean hasNext() {
+		return !nodes.isEmpty();
+	}
+
+}
+
+
+//solution(node)
+class BSTIterator {
+
+	private TreeNode node;
+	
+	public BSTIterator(TreeNode root) {
+		this.node = root;
+	}
+
+	public int next() {
+		while (node.left != null) {
+			TreeNode current = node.left;
+			while(current.right != null && current.right != node) {
+				current = current.right;
+			}
+			if (current.right == node) {
+				current.right = null;
+				break;
+			}
+			current.right = node;
+			node = node.left;
+		}
+		int value = node.val;
+		node = node.right;
+		return value; 
+	}
+
+	public boolean hasNext() {
+		return node != null;
+	}
+
+}
