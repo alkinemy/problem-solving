@@ -11,7 +11,7 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-//first answer
+//first answer(BFS)
 public class Codec {
 
     // Encodes a tree to a single string.
@@ -79,7 +79,7 @@ public class Codec {
 
 
 
-//second answer(remove unnecessary last nulls)
+//second answer(remove unnecessary last nulls, BFS)
 public class Codec {
 
     // Encodes a tree to a single string.
@@ -143,3 +143,104 @@ public class Codec {
 		return root;
     }
 }
+
+
+//third answer(DFS)
+public class Codec {
+
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+		if (root == null) {
+			return "";
+		}
+		StringBuilder serialized = new StringBuilder();
+		doSerialization(root, serialized);
+		return serialized.toString();
+    }
+
+	private void doSerialization(TreeNode node, StringBuilder sb) {
+		if (node == null) {
+			sb.append(",null");
+			return;
+		}
+		sb.append(",").append(node.val);
+		doSerialization(node.left, sb);
+		doSerialization(node.right, sb);
+	}
+
+    // Decodes your encoded data to tree.
+	public TreeNode deserialize(String data) {
+		if ("".equals(data)) {
+			return null;
+		}
+		String[] values = data.split(","); 
+		TreeNode root = new TreeNode(Integer.parseInt(values[1]));
+		doDeserialization(root, values, 2);
+		return root;
+	}
+
+	private int doDeserialization(TreeNode node, String[] values, int i) {
+		String left = values[i];
+		i++;
+		if (!"null".equals(left)) {
+			node.left = new TreeNode(Integer.parseInt(left));
+			i = doDeserialization(node.left, values, i);
+		}
+		
+		String right = values[i];
+		i++;
+		if (!"null".equals(right)) {
+			node.right = new TreeNode(Integer.parseInt(right));
+			i = doDeserialization(node.right, values, i);
+		}
+		return i;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
