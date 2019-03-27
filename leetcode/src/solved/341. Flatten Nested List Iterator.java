@@ -19,6 +19,7 @@
  *     public List<NestedInteger> getList();
  * }
  */
+//answer
 public class NestedIterator implements Iterator<Integer> {
 
 	private List<NestedInteger> nestedList;
@@ -83,3 +84,38 @@ public class NestedIterator implements Iterator<Integer> {
  * NestedIterator i = new NestedIterator(nestedList);
  * while (i.hasNext()) v[f()] = i.next();
  */
+
+
+//a little more simple
+public class NestedIterator implements Iterator<Integer> {
+
+	private Iterator<Integer> iterator;
+
+    public NestedIterator(List<NestedInteger> nestedList) {
+		List<Integer> list = flatten(nestedList);
+		this.iterator = list.iterator();
+    }
+
+	private List<Integer> flatten(List<NestedInteger> nestedList) {
+		List<Integer> result = new ArrayList<>();
+		for (NestedInteger nested : nestedList) {
+			if (nested.isInteger()) {
+				result.add(nested.getInteger());
+			} else {
+				result.addAll(flatten(nested.getList()));
+			}
+		}
+		return result;
+	}
+
+    @Override
+    public Integer next() {
+        return iterator.next();
+    }
+
+    @Override
+    public boolean hasNext() {
+		return iterator.hasNext();        
+    }
+
+}
