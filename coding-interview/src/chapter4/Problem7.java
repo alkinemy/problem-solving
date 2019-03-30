@@ -17,7 +17,7 @@ class ProjectEdge {
 		this.to = to;
 	}
 }
-gjList<String> findProcessingOrder(List<String> values, List<ProjectEdge> edges) {
+List<String> findProcessingOrder(List<String> values, List<ProjectEdge> edges) {
 	List<ProjectNode> nodes = buildGraph(values, edges);
 	return findProcessingOrder(nodes);
 }
