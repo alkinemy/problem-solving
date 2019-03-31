@@ -24,7 +24,7 @@
  * }
  */
 class Solution {
-    public ListNode mergeKLists(ListNode[] lists) {
+	public ListNode mergeKLists(ListNode[] lists) {
 		if (lists == null || lists.length == 0) {
 			return null;
 		}
@@ -41,13 +41,13 @@ class Solution {
 		for (int i = 0; i < lists.length / 2; i++) {
 			ListNode node1 = lists[2 * i];
 			ListNode node2 = lists[2 * i + 1];
-            ListNode head = null;
+			ListNode head = null;
 			ListNode current = null;
 			while (node1 != null || node2 != null) {
 				if (node1 == null) {
 					if (current == null) {
 						current = node2;
-                        head = current;
+						head = current;
 					} else {
 						current.next = node2;
 					}
@@ -56,7 +56,7 @@ class Solution {
 				if (node2 == null){
 					if (current == null) {
 						current = node1;
-                        head = current;
+						head = current;
 					} else {
 						current.next = node1;
 					}
@@ -66,7 +66,7 @@ class Solution {
 					if (current == null) {
 						current = node1;
 						node1 = node1.next;
-                        head = current;
+						head = current;
 					} else {
 						current.next = node1;
 						current = current.next;
@@ -76,7 +76,7 @@ class Solution {
 					if (current == null) {
 						current = node2;
 						node2 = node2.next;
-                        head = current;
+						head = current;
 					} else {
 						current.next = node2;
 						current = current.next;
@@ -86,10 +86,10 @@ class Solution {
 			}
 			newLists[i] = head;
 		}
-        if (lists.length % 2 == 1) {
-            newLists[size - 1] = lists[lists.length - 1];
-        }
+		if (lists.length % 2 == 1) {
+			newLists[size - 1] = lists[lists.length - 1];
+		}
 		return mergeKLists(newLists);
-    }
+	}
 }
 
