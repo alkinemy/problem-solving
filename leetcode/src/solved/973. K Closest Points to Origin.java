@@ -4,7 +4,7 @@
 
 //first answer(sort) - O(nlogn)
 class Solution {
-    public int[][] kClosest(int[][] points, int K) {
+	public int[][] kClosest(int[][] points, int K) {
 		if (points == null || points.length == 0 || K == points.length) {
 			return points;
 		}
@@ -19,12 +19,12 @@ class Solution {
 		});
 
 		return Arrays.copyOf(points, K);
-    }
+	}
 }
 
 //second answer(priority queue) O(nlogn)
 class Solution {
-    public int[][] kClosest(int[][] points, int K) {
+	public int[][] kClosest(int[][] points, int K) {
 		if (points == null || points.length == 0 || K == points.length) {
 			return points;
 		}
@@ -41,11 +41,11 @@ class Solution {
 		for (int i = 0; i < points; i++) {
 			queue.add(points[i]);
 		}
-		
+
 		int[][] result = new int[K][];
 		for (int i = 0; i < K; i++) {
 			result[i] = queue.remove();
 		}
 		return result;
-    }
+	}
 }
