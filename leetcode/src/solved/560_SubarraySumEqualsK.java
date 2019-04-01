@@ -4,7 +4,7 @@
 
 //first answer
 class Solution {
-    public int subarraySum(int[] nums, int k) {
+	public int subarraySum(int[] nums, int k) {
 		int[] sums = new int[nums.length];
 
 		int count = 0;
@@ -21,14 +21,14 @@ class Solution {
 			}
 		}
 		return count;
-    }
+	}
 }
 
 //second answer(cheated)
 class Solution {
-    public int subarraySum(int[] nums, int k) {
+	public int subarraySum(int[] nums, int k) {
 		Map<Integer, Integer> sums = new HashMap<>();
-		
+
 		int count = 0;
 		int current = 0;
 		for (int i = 0; i < nums.length; i++) {

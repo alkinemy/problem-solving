@@ -4,7 +4,7 @@
 
 //first solution O(n^2)?
 class Solution {
-    public int trap(int[] height) {
+	public int trap(int[] height) {
 		int[] trap = new int[height.length];
 
 		for (int i = 1; i < height.length; i++) {
@@ -35,7 +35,7 @@ class Solution {
 						}
 					}
 				}
-				
+
 			}
 		}
 
@@ -44,7 +44,7 @@ class Solution {
 			result += trap[i];
 		}
 		return result;
-    }
+	}
 }
 
 //second solution(cheated) O(n^2)

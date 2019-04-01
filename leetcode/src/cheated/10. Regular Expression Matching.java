@@ -4,7 +4,7 @@
 
 //solution1(recursion)
 class Solution {
-    public boolean isMatch(String text, String pattern) {
+	public boolean isMatch(String text, String pattern) {
 		if (pattern.length() == 0) {
 			return text.length() == 0;
 		}
@@ -18,7 +18,7 @@ class Solution {
 
 //solution2(DP) - Top-down
 class Solution {
-    public boolean isMatch(String text, String pattern) {
+	public boolean isMatch(String text, String pattern) {
 		Boolean[][] memo = new Boolean[text.length() + 1][pattern.length() + 1];
 		return doIsMatch(0, 0, text, pattern, memo);
 	}
@@ -44,7 +44,7 @@ class Solution {
 
 //solution3(DP) - Bottom-up
 class Solution {
-    public boolean isMatch(String text, String pattern) {
+	public boolean isMatch(String text, String pattern) {
 		boolean[][] memo = new boolean[text.length() + 1][pattern.length() + 1];
 		memo[text.length()][pattern.length()] = true;
 

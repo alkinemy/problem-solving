@@ -13,19 +13,19 @@
  */
 
 class Solution {
-    public List<Interval> merge(List<Interval> intervals) {
-        if (intervals == null || intervals.isEmpty()) {
-            return intervals;
-        }
+	public List<Interval> merge(List<Interval> intervals) {
+		if (intervals == null || intervals.isEmpty()) {
+			return intervals;
+		}
 
-        List<Node> nodes = new ArrayList<>();
-        for (int i = 0; i < intervals.size(); i++) {
-            Interval interval = intervals.get(i);
-            nodes.add(new Node(interval.start, i, true));
-            nodes.add(new Node(interval.end, i, false));
-        }
+		List<Node> nodes = new ArrayList<>();
+		for (int i = 0; i < intervals.size(); i++) {
+			Interval interval = intervals.get(i);
+			nodes.add(new Node(interval.start, i, true));
+			nodes.add(new Node(interval.end, i, false));
+		}
 
-        nodes.sort((v1, v2) -> {
+		nodes.sort((v1, v2) -> {
             int compare = Integer.compare(v1.value, v2.value);
             if (compare == 0) {
                 if ((v1.isStart && v2.isStart) || (!v1.isStart && !v2.isStart)) {
@@ -39,38 +39,38 @@ class Solution {
             return compare;  
         });
 
-        List<Interval> result = new ArrayList<>();
-        int startPoint = 0;
-        int startCount = 0;
-        for (int i = 0; i < nodes.size(); i++) {
-            Node node = nodes.get(i);
-            if (node.isStart) {
-                if (startCount == 0) {
-                    startPoint = i;
-                }
-                startCount++;
-                continue;
-            }
+		List<Interval> result = new ArrayList<>();
+		int startPoint = 0;
+		int startCount = 0;
+		for (int i = 0; i < nodes.size(); i++) {
+			Node node = nodes.get(i);
+			if (node.isStart) {
+				if (startCount == 0) {
+					startPoint = i;
+				}
+				startCount++;
+				continue;
+			}
 
-            startCount--;
-            if (startCount == 0) {
-                result.add(new Interval(nodes.get(startPoint).value, nodes.get(i).value));
-            }
-        }
-        return result;
-    }
+			startCount--;
+			if (startCount == 0) {
+				result.add(new Interval(nodes.get(startPoint).value, nodes.get(i).value));
+			}
+		}
+		return result;
+	}
 
-    class Node {
-        int value;
-        int index;
-        boolean isStart;
+	class Node {
+		int value;
+		int index;
+		boolean isStart;
 
-        public Node(int value, int index, boolean isStart) {
-            this.value = value;
-            this.index = index;
-            this.isStart = isStart;
-        }
-    }
+		public Node(int value, int index, boolean isStart) {
+			this.value = value;
+			this.index = index;
+			this.isStart = isStart;
+		}
+	}
 }
 
 
@@ -82,7 +82,7 @@ class Solution {
 		if (intervals == null || intervals.isEmpty()) {
 			return intervals;
 		}
-		
+
 		Map<Interval, List<Interval>> overlapped = new HashMap<>();
 		for (Interval interval1 : intervals) {
 			for (Interval interval2 : intervals) {
@@ -174,10 +174,3 @@ class Solution {
 		return result;
 	}
 }
-
-
-
-
-
-
-

@@ -13,7 +13,7 @@
  */
 //first answer
 class Solution {
-    public int minMeetingRooms(Interval[] intervals) {
+	public int minMeetingRooms(Interval[] intervals) {
 		if (intervals == null || intervals.length == 0) {
 			return 0;
 		}
@@ -38,9 +38,9 @@ class Solution {
 				}
 			}
 		}
-		
+
 		return room;
-    }
+	}
 }
 
 
@@ -48,7 +48,7 @@ class Solution {
 
 //second answer(don't use the lambda);
 class Solution {
-    public int minMeetingRooms(Interval[] intervals) {
+	public int minMeetingRooms(Interval[] intervals) {
 		if (intervals == null || intervals.length == 0) {
 			return 0;
 		}
@@ -78,16 +78,16 @@ class Solution {
 				}
 			}
 		}
-		
+
 		return room;
-    }
+	}
 }
 
 
 
 //priority queue(solution)
 class Solution {
-    public int minMeetingRooms(Interval[] intervals) {
+	public int minMeetingRooms(Interval[] intervals) {
 		if (intervals == null || intervals.length == 0) {
 			return 0;
 		}

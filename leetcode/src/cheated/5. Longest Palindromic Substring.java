@@ -63,7 +63,7 @@ class Solution {
 			int palindromeLength1 = getPalindromeLength(s, i, i);
 			int palindromeLength2 = getPalindromeLength(s, i, i + 1);
 			int currentMax = Math.max(palindromeLength1, palindromeLength2);
-	
+
 			if (currentMax > max) {
 				max = currentMax;
 				start = i - (max - 1) / 2;

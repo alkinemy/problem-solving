@@ -22,7 +22,7 @@ class Solution {
 	}
 
 
-    public boolean wordBreak(String s, List<String> wordDict) {
+	public boolean wordBreak(String s, List<String> wordDict) {
 		if (s == null || s.length() == 0) {
 			return true;
 		} else if (wordDict == null || wordDict.size() == 0) {
@@ -35,7 +35,7 @@ class Solution {
 		}
 
 		return find(root, s);
-    }
+	}
 
 	boolean find(TrieNode root, String s) {
 		TrieNode current = root;
@@ -67,7 +67,7 @@ class Solution {
 
 //solution2(memoization)
 class Solution {
-    public boolean wordBreak(String s, List<String> wordDict) {
+	public boolean wordBreak(String s, List<String> wordDict) {
 		return doWordBreak(s, new HashSet<>(wordDict), 0, new Boolean[s.length()]);
 	}
 
@@ -92,7 +92,7 @@ class Solution {
 
 //solution3(BFS)
 class Solution {
-    public boolean wordBreak(String s, List<String> wordDict) {
+	public boolean wordBreak(String s, List<String> wordDict) {
 		Set<String> wordDictSet = new HashSet<>(wordDict);
 		boolean[] visited = new boolean[s.length()];
 		Queue<Integer> queue = new LinkedList<>();
@@ -119,7 +119,7 @@ class Solution {
 
 //solution4(DP)
 class Solution {
-    public boolean wordBreak(String s, List<String> wordDict) {
+	public boolean wordBreak(String s, List<String> wordDict) {
 		Set<String> words = new HashSet<>(wordDict);
 		boolean[] memo = new boolean[s.length() + 1];
 		memo[0] = true;
@@ -135,26 +135,3 @@ class Solution {
 		return memo[s.length()];
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -4,47 +4,47 @@
 
 //first answer
 class Solution {
-    public List<Integer> spiralOrder(int[][] matrix) {
-        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
-            return Collections.emptyList();
-        }
-    
-        int shortLength = Math.min(matrix.length, matrix[0].length);
-        List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < shortLength / 2; i++) {
-            //left -> right
-            for(int c = i; c < matrix[i].length - i; c++) {
-                result.add(matrix[i][c]);
-            }
-            //up -> down
-            for(int r = i + 1; r < matrix.length - i; r++) {
-                result.add(matrix[r][matrix[i].length - 1 - i]);
-            }   
-            //right -> left
-            for (int c = matrix[i].length - 2 - i; c >= i; c--) {
-                result.add(matrix[matrix.length - 1 - i][c]);
-            }   
-            //down -> up
-            for (int r = matrix.length - 2 - i; r > i; r--) {
-                result.add(matrix[r][i]);
-            }   
-        }   
-        
-        if (shortLength % 2 == 1) {
-            int i = shortLength / 2;
-            if (matrix.length == shortLength) { //row
-                for (int c = i; c < matrix[i].length - i; c++){
-                    result.add(matrix[i][c]);
-                }
-            } else { //column
-                for (int r = i; r < matrix.length - i; r++) {
-                    result.add(matrix[r][i]);
-                }
-            }   
-        } 
-            
-        return result;
-    }   
+	public List<Integer> spiralOrder(int[][] matrix) {
+		if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+			return Collections.emptyList();
+		}
+
+		int shortLength = Math.min(matrix.length, matrix[0].length);
+		List<Integer> result = new ArrayList<>();
+		for (int i = 0; i < shortLength / 2; i++) {
+			//left -> right
+			for(int c = i; c < matrix[i].length - i; c++) {
+				result.add(matrix[i][c]);
+			}
+			//up -> down
+			for(int r = i + 1; r < matrix.length - i; r++) {
+				result.add(matrix[r][matrix[i].length - 1 - i]);
+			}   
+			//right -> left
+			for (int c = matrix[i].length - 2 - i; c >= i; c--) {
+				result.add(matrix[matrix.length - 1 - i][c]);
+			}   
+			//down -> up
+			for (int r = matrix.length - 2 - i; r > i; r--) {
+				result.add(matrix[r][i]);
+			}   
+		}   
+
+		if (shortLength % 2 == 1) {
+			int i = shortLength / 2;
+			if (matrix.length == shortLength) { //row
+				for (int c = i; c < matrix[i].length - i; c++){
+					result.add(matrix[i][c]);
+				}
+			} else { //column
+				for (int r = i; r < matrix.length - i; r++) {
+					result.add(matrix[r][i]);
+				}
+			}   
+		} 
+
+		return result;
+	}   
 }
 
 
@@ -53,7 +53,7 @@ class Solution {
 
 //simulation(solution)
 class Solution {
-    public List<Integer> spiralOrder(int[][] matrix) {
+	public List<Integer> spiralOrder(int[][] matrix) {
 		if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
 			return Collections.emptyList();
 		}
@@ -90,11 +90,11 @@ class Solution {
 
 //layer by layer(solution)
 class Solution {
-    public List<Integer> spiralOrder(int[][] matrix) {
+	public List<Integer> spiralOrder(int[][] matrix) {
 		if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
 			return Collections.emptyList();
 		}
-		
+
 		int r1 = 0;
 		int c1 = 0;
 		int r2 = matrix.length - 1;
@@ -123,15 +123,3 @@ class Solution {
 		return result;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-

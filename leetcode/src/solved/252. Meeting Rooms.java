@@ -13,7 +13,7 @@
  */
 //first answer
 class Solution {
-    public boolean canAttendMeetings(Interval[] intervals) {
+	public boolean canAttendMeetings(Interval[] intervals) {
 		if (intervals == null || intervals.length == 0) {
 			return false;
 		}
@@ -27,13 +27,13 @@ class Solution {
 			}
 		}
 		return true;
-    }
+	}
 }
 
 
 //second answer(don't use the lambda)
 class Solution {
-    public boolean canAttendMeetings(Interval[] intervals) {
+	public boolean canAttendMeetings(Interval[] intervals) {
 		if (intervals == null || intervals.length == 0) {
 			return true;
 		}
@@ -51,5 +51,5 @@ class Solution {
 			currentEnd = intervals[i].end;
 		}
 		return true;
-    }
+	}
 }
