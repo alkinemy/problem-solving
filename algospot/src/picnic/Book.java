@@ -24,6 +24,11 @@ public class Book {
 		}
 	}
 
+	//전부 다 친구인 경우에---
+	//완성되는 시점에 countPairs가 호출되는 수: (2n-1)!
+	//중간에 countPairs가 호출되는 수: root에서 말단까지의 거리가 n/2 -> 전체 노드는 (n/2)*(2n-1)!을 넘지 못함
+	//전부 할당되었는지 체크: n
+	//conclusion: O(n^2*(2n-1)!) ???
 	private static int countPairs(boolean[][] friends, boolean[] used) {
 		int notUsed = -1;
 		for (int i = 0; i < used.length; i++) {
