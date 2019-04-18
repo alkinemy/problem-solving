@@ -52,24 +52,19 @@ public class Main {
 
 		int result = Integer.MAX_VALUE;
 		for (int i = 0; i < 4; i++) {
-			pushSwitch(clockPointers, currentSwitchIndex, i);
 			int pushed = findMinimumCount(clockPointers, currentSwitchIndex + 1, totalPushCount + i);
 			result = Math.min(result, pushed);
-			pushSwitch(clockPointers, currentSwitchIndex, -i);
+			pushSwitch(clockPointers, currentSwitchIndex);
 		}
 
 		return result;
 	}
 
-	private static void pushSwitch(int[] clockPointers, int currentSwitchIndex, int pushCount) {
-		if (pushCount == 0) {
-			return;
-		}
-
+	private static void pushSwitch(int[] clockPointers, int currentSwitchIndex) {
 		int[] currentSwitch = SWITCH_MAPPINGS[currentSwitchIndex];
 		for (int i = 0; i < currentSwitch.length; i++) {
 			int clock = currentSwitch[i];
-			clockPointers[clock] = (clockPointers[clock] + pushCount * 3) % 12;
+			clockPointers[clock] = (clockPointers[clock] + 3) % 12;
 		}
 	}
 
