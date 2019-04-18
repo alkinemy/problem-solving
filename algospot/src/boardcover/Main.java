@@ -14,15 +14,23 @@ public class Main {
 			int row = scanner.nextInt();
 			int column = scanner.nextInt();
 			boolean[][] board = new boolean[row][column];
+			int whiteCellCount = 0;
 			for (int r = 0; r < row; r++) {
 				String boardRow = scanner.next();
 				for (int c = 0; c < column; c++) {
 					//white: false, black: true
 					board[r][c] = boardRow.charAt(c) == '#';
+					if (!board[r][c]) {
+						whiteCellCount++;
+					}
 				}
 			}
-			int count = solve(board, 0, 0);
-			System.out.println(count);
+			if (whiteCellCount % 3 != 0) {
+				System.out.println(0);
+			} else {
+				int count = solve(board, 0, 0);
+				System.out.println(count);
+			}
 		}
 	}
 
